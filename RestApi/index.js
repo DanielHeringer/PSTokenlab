@@ -12,7 +12,7 @@ const conn = mysql.createConnection({
 });
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', 'http://192.168.1.108:4200');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, x-auth");
     next();
@@ -37,7 +37,7 @@ app.post('/login/', (req, res) => {
             console.log("erro: " + erro);
         }else{
             if(Object.keys(rows).length == 0){
-                res.send("{\"loginAuth\": 0}");
+                res.send({"loginAuth": 0});
             }
             else{
                 rows[0].loginAuth = "1";
@@ -82,16 +82,16 @@ app.post('/createUser/', (req, res) => {
             conn.query(queryCheckEmail, function(erro, rows_email, fields){
                     if(!rows_email.length){
                         conn.query(query, function(erro, row, fields){
-                                res.status(200).send("{\"userError\": 0, \"user\":"+JSON.stringify(user)+"}");
+                                res.status(200).send(JSON.parse("{\"userError\": 0, \"user\":"+JSON.stringify(user)+"}"));
                         });
                     }else{
-                        res.status(200).send("{\"userError\": 2}");
+                        res.status(200).send({"userError": 2});
                     }
             });
         }
         else{
             console.log("erro 1");
-            res.status(200).send("{\"userError\": 1}");
+            res.status(200).send({"userError": 1});
         }
     })
 });
@@ -115,11 +115,12 @@ app.post('/createEvent/', (req, res) => {
           )`;
     let query = `INSERT INTO event(name, description, start, end, creatorID) values('${event.name}', '${event.description}',
     '${event.startDate}','${event.endDate}', '${event.creatorID}')`;
-
+    console.log(event)
     conn.query(queryCheckOverlap, function(erro, rows_check, fields){
         if(!rows_check.length){
             conn.query(query, function(erro, rows, fields){
                 if(erro){
+                    console.log(erro);
                     res.send({eventError: -1});
                 }else{
                     console.log("Event" + JSON.stringify(event));
@@ -203,5 +204,5 @@ app.delete('/deleteEvent/:id', (req, res) => {
 });
 
 
-app.listen(3000);
+app.listen(3000, "192.168.1.108");
 

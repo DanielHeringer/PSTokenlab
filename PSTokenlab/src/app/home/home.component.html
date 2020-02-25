@@ -4,7 +4,6 @@
           {{ user.name }}
           <div class="userBox-dropdown">
             <a href="/newEvent/default"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
-            <a href="#"><img src="./../../assets/icons/baseline_list_alt_black_18dp.png" height="24px">My Events</a>
           </div>
         </div>
         <div class="logoLink">
@@ -22,7 +21,7 @@
           </a>
           <a href="/login" *ngIf="!logged">Login</a>
           <a href="#" *ngIf="logged" (click)="logout()">
-            <img src="./../../assets/icons/exit_to_app-24px.svg" height="24px"> Logout
+            <img src="./../../assets/icons/exit_to_app-24px.svg" height="24px">
           </a>
         </div>
     </div>
@@ -72,17 +71,31 @@
                     <hr>
                     <div class="title">{{event.name}} </div>
 
-                  <div class="actionMenu">
+                  <div class="actionMenu" id="hide-mobile">
                     <span class="invite"><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></span>
                     <span class="edit" (click)="editEvent(event.id)"><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></span>
-                    <span class="delete" (click)="delete(event.id)"><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></span>
-                </div>
+                    <span class="delete" (click)="toggleConfirmation(event.id)"><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></span>
+                    <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="confirmation">
+                      Click here to confirm
+                    </div>
+                  </div>
                   </div>
 
                   <div class="item-row">
                     <div class="description">{{event.description}} </div>
                   </div>
-                </div>
+
+                  <div class="item-row" id="show-mobile">
+                    <div class="actionMenu" id="show-mobile">
+                      <div class="invite"><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></div>
+                      <div class="edit" (click)="editEvent(event.id)"><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></div>
+                      <div class="delete" (click)="toggleConfirmation(event.id)"><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></div>
+                      <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="confirmation">
+                        Click here to confirm
+                      </div>
+                    </div>
+                  </div>
+              </div>
 
               </div>
             </div>

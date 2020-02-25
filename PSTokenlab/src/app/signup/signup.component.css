@@ -1,6 +1,5 @@
 
 .containerMain{
-    background-color: #c4c4c441;
     position: absolute;
     display: block;
     width: 100%;
@@ -94,4 +93,13 @@ a:link, a:visited {
     display: block;
     padding-left: 30px;
     margin-bottom: 5px;
+  }
+
+  @media only screen and (max-width: 600px){
+
+
+    .mainbox{
+      width: 100%;
+      }
+
   }

@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  localUrl: string = "http://localhost:4200";
-  baseUrl: string = "http://localhost:3000";
+  localUrl: string = "http://192.168.1.108:4200";
+  baseUrl: string = "http://192.168.1.108:3000";
 
 
   constructor(private _http: HttpClient) {}

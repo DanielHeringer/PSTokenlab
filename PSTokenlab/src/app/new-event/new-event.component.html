@@ -3,8 +3,7 @@
     <img src="./../../assets/icons/account_circle-24px.svg">
     {{ user.name }}
     <div class="userBox-dropdown">
-      <a href="/newEvent"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
-      <a href="#"><img src="./../../assets/icons/baseline_list_alt_black_18dp.png" height="24px">My Events</a>
+      <a href="/newEvent/default"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
     </div>
   </div>
   <div class="logoLink">
@@ -20,7 +19,7 @@
     </div>
     <div class="menuLink">
       <a href="#" *ngIf="logged" (click)="logout()">
-        <img src="./../../assets/icons/exit_to_app-24px.svg" height="24px"> Logout
+        <img src="./../../assets/icons/exit_to_app-24px.svg" height="24px">
       </a>
     </div>
   </div>

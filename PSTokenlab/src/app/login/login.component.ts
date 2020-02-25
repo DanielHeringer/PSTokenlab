@@ -51,7 +51,9 @@ export class LoginComponent implements OnInit {
           this.errorMsg = "Wrong email or password";
         }
       }))
-    .subscribe(data => {this.user = data})
+    .subscribe(data => {
+      this.user = data
+    })
   }
   startSession(){
     sessionStorage.setItem('user', JSON.stringify(this.user));

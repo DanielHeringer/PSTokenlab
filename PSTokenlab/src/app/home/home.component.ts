@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   eventsToList: Event[] = [];
   markedDays:number[] = [];
   actionLoginText: string = "Login";
+  confirmationDialog: number = 0;
 
 
   constructor(private dataService: DataService) {
@@ -189,5 +190,16 @@ export class HomeComponent implements OnInit {
     let dateStr = date.toISOString();
     let param = dateStr.slice(0,16);
     window.location.href = this.dataService.localUrl + '/newEvent/' + param;
+  }
+  toggleConfirmation(id){
+    if(this.confirmationDialog == 0){
+      this.confirmationDialog = id;
+    }
+    else if(this.confirmationDialog != id){
+      this.confirmationDialog = id;
+    }
+    else{
+      this.confirmationDialog = 0;
+    }
   }
 }
