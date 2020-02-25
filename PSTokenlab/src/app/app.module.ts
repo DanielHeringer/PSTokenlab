@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
 import { DataService } from './services/data.service';
 import { NewEventComponent } from './new-event/new-event.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NewEventComponent } from './new-event/new-event.component';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    NewEventComponent
+    NewEventComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,

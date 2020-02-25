@@ -33,9 +33,19 @@ export class DataService {
                "startDate": event.startDate.getTime(), "endDate": event.endDate.getTime(), "creatorID": creatorID};
     return this._http.post<any>(apiUrl, json);
   }
+  editEvent(event : Event, creatorID){
+    let apiUrl = this.baseUrl+"/editEvent/";
+    let json ={"id": event.id, "name": event.name, "description": event.description,
+               "startDate": event.startDate.getTime(), "endDate": event.endDate.getTime(), "creatorID": creatorID};
+    return this._http.put<any>(apiUrl, json);
+  }
   getEventInterval(creatorID, start, end){
     let apiUrl = this.baseUrl+`/eventInterval/${creatorID}/${start}/${end}`;
     return this._http.get<any[]>(apiUrl);
+  }
+  getEvent(id, creatorID){
+    let apiUrl = this.baseUrl+`/event/${id}/${creatorID}`;
+    return this._http.get<any>(apiUrl);
   }
   deleteEvent(id){
     let apiUrl = this.baseUrl+`/deleteEvent/`+id;

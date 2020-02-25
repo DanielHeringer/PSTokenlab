@@ -1,3 +1,4 @@
+import { EditEventComponent } from './edit-event/edit-event.component';
 import { NewEventComponent } from './new-event/new-event.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'newEvent', component: NewEventComponent}
+  { path: 'newEvent', component: NewEventComponent},
+  { path: 'editEvent/:id/:updated', component: EditEventComponent}
 ];
 
 @NgModule({

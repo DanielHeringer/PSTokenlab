@@ -134,6 +134,28 @@ app.post('/createEvent/', (req, res) => {
     });
 });
 
+app.put('/editEvent/', (req, res) => {
+    const event = {
+        id: req.body.id,
+        name: req.body.name,
+        description: req.body.description,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        creatorID: req.body.creatorID
+    }
+    let query = `UPDATE event SET name='${event.name}', description='${event.description}',
+            start='${event.startDate}', end='${event.endDate}' WHERE (id=${event.id} AND creatorID=${event.creatorID})`;
+            console.log(query)
+        conn.query(query, function(erro, rows, fields){
+            if(erro){
+                res.send({eventError: -1});
+            }else{
+                res.send({eventError: 0});
+            }
+    });
+});
+
+
 app.get('/eventInterval/:creatorID/:start/:end', (req, res) => {
     let query = `SELECT * FROM event WHERE
                     creatorID = ${req.params.creatorID} AND (
@@ -151,27 +173,23 @@ app.get('/eventInterval/:creatorID/:start/:end', (req, res) => {
         }
     })
 });
-
-app.put('/updateEvent', (req, res) => {
-    const event = {
-        id: req.body.id,
-        name: req.body.name,
-        description: req.body.description,
-        start: req.body.startDate,
-        end: req.body.endDate,
-        creatorID: req.body.creatorID
-    }
-    let query = `UPDATE event SET name='${event.name}', description='${event.description}',
-            start='${event.start}', end='${event.end}' WHERE id=${event.id} AND creatorID=${event.creatorID}`;
-    conn.query(query, function(erro, rows, fields){ 
+app.get('/event/:id/:creatorID', (req, res) => {
+    let query = `SELECT * FROM event WHERE
+                    creatorID = ${req.params.creatorID} AND id = ${req.params.id}`;
+    conn.query(query, function(erro, rows, fields){
         if(!!erro){
             console.log("erro: " + erro);
         }else{
-            res.send("Evento Editado: " + JSON.stringify(event));
+            if(rows.length == 0){
+                res.send({auth:0})
+            }
+            else{
+                rows[0].auth = 1;
+                res.send(rows);
+            }
         }
     })
 });
-
 
 app.delete('/deleteEvent/:id', (req, res) => {
     let query = `DELETE FROM event WHERE id = ${req.params.id}`

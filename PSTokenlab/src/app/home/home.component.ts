@@ -181,4 +181,7 @@ export class HomeComponent implements OnInit {
     .subscribe(data => {
     })
   }
+  editEvent(id){
+    window.location.href = this.dataService.localUrl + "/editEvent/" + id + "/0";
+  }
 }
