@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'newEvent', component: NewEventComponent},
+  { path: 'newEvent/:date', component: NewEventComponent},
   { path: 'editEvent/:id/:updated', component: EditEventComponent}
 ];
 

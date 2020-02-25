@@ -24,7 +24,7 @@ export class EditEventComponent implements OnInit {
   logged: number;
   errorMsg: string  = "";
   eventError: number = -1;
-  updated;
+  updated = 0;
   data;
 
 
@@ -32,10 +32,8 @@ export class EditEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.checklogged();
-    this.getEvent(this.getEvent(this.route.snapshot.paramMap.get('id')));
-    if(this.getEvent(this.route.snapshot.paramMap.get('updated'))){
-
-    }
+    this.getEvent(this.route.snapshot.paramMap.get('id'));
+    this.updated = +this.route.snapshot.paramMap.get('updated');
   }
 
   checklogged(){
@@ -85,8 +83,8 @@ export class EditEventComponent implements OnInit {
       finalize(() => {
         this.name = this.data.name;
         let start = new Date(this.data.start).toISOString(), end = new Date(this.data.end).toISOString();
-        this.startDateStr = start.substring(0,start.length-1);
-        this.endDateStr = end.substring(0,end.length-1);
+        this.startDateStr = start.slice(0,16);
+        this.endDateStr = end.slice(0,16);
         this.description = this.data.description;
       }))
     .subscribe(data => {

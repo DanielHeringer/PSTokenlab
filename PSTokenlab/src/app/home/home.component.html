@@ -3,7 +3,7 @@
           <img src="./../../assets/icons/account_circle-24px.svg">
           {{ user.name }}
           <div class="userBox-dropdown">
-            <a href="/newEvent"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
+            <a href="/newEvent/default"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
             <a href="#"><img src="./../../assets/icons/baseline_list_alt_black_18dp.png" height="24px">My Events</a>
           </div>
         </div>
@@ -44,7 +44,7 @@
                     </div>
                     <ng-template #non_marked>
                       <div *ngIf="i>=monthIndex && (i-(monthIndex-1))<=(daysInMonth )">
-                          <a class="non_marked" href="/newEvent"><p>{{ i-(monthIndex-1) }}</p></a>
+                          <a class="non_marked" (click)="redirectToNew((i-(monthIndex-1)))"><p>{{ i-(monthIndex-1) }}</p></a>
                       </div>
                     </ng-template>
                   </div>

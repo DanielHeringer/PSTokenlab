@@ -42,7 +42,7 @@
                       <input class="inputText"  [(ngModel)]="name" type="text" name="eventName" maxlength="100" placeholder="Event Name" required>
                       <label class="label">* Start Date:</label>
                       <input class="inputText" [(ngModel)]="startDateStr" type="datetime-local" name="startDate"
-                                  placeholder="Descripition" value="2018-06-13T19:30" max="3000-01-01T00:00" required>
+                                  placeholder="Descripition"  step="60" max="3000-01-01T00:00" required>
                       <label class="label">* End Date:</label>
                       <input class="inputText" [(ngModel)]="endDateStr" type="datetime-local" name="endDate"
                                   placeholder="End Date" value="2018-06-13T19:30" max="3000-01-01T00:00" required>

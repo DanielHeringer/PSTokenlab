@@ -4,6 +4,7 @@ import { DataService } from './../services/data.service';
 import { Event } from './../models/event.model';
 import { Component, OnInit } from '@angular/core';
 import { Time } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-event',
@@ -25,11 +26,20 @@ export class NewEventComponent implements OnInit {
   errorMsg: string  = "";
   eventError: number = -1;
 
-
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.checklogged();
+    if(this.route.snapshot.paramMap.get('date') == "default"){
+      let date = new Date()
+      let dateStr = date.toISOString();
+      this.startDateStr = dateStr.slice(0,16);
+      this.endDateStr = dateStr.slice(0,16);
+    }
+    else{
+      this.startDateStr = this.route.snapshot.paramMap.get('date');
+      this.endDateStr = this.route.snapshot.paramMap.get('date');
+    }
   }
 
   checklogged(){

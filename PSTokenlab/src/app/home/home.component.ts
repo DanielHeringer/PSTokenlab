@@ -184,4 +184,10 @@ export class HomeComponent implements OnInit {
   editEvent(id){
     window.location.href = this.dataService.localUrl + "/editEvent/" + id + "/0";
   }
+  redirectToNew(day){
+    let date = new Date(`${this.currentYear}-${this.monthInteger}-${day}`)
+    let dateStr = date.toISOString();
+    let param = dateStr.slice(0,16);
+    window.location.href = this.dataService.localUrl + '/newEvent/' + param;
+  }
 }
