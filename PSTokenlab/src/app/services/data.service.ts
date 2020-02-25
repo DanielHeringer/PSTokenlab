@@ -37,4 +37,8 @@ export class DataService {
     let apiUrl = this.baseUrl+`/eventInterval/${creatorID}/${start}/${end}`;
     return this._http.get<any[]>(apiUrl);
   }
+  deleteEvent(id){
+    let apiUrl = this.baseUrl+`/deleteEvent/`+id;
+    return this._http.delete<any[]>(apiUrl);
+  }
 }

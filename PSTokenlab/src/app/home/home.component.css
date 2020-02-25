@@ -143,6 +143,7 @@
   background-color: white;
 }
 .list .item{
+  position: relative;
   padding: 16px;
   margin: 10px 16px;
   border:1px solid #ebebeb;
@@ -194,6 +195,46 @@
   width: 100%;
   font-size: 14px;
 
+}
+.list .item .actionMenu{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 16px;
+  font-size: 14px;
+
+}
+.list .item .actionMenu .delete{
+  background-color: rgb(224, 2, 2);
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.list .item .actionMenu .delete:hover{
+  background-color: rgb(149, 1, 1);
+}
+.list .item .actionMenu .edit{
+  background-color: #ebebeb;
+  margin-right: 10px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.list .item .actionMenu .edit:hover{
+  background-color: #b9b8b8;
+}
+.list .item .actionMenu .invite{
+  background-color: #ebebeb;
+  margin-right: 10px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.list .item .actionMenu .invite:hover{
+  background-color: #b9b8b8;
 }
 .list .item hr{
   float: left;

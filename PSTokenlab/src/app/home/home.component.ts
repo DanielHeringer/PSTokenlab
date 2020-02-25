@@ -171,4 +171,14 @@ export class HomeComponent implements OnInit {
       this.getEvents();
     }
   }
+
+  delete(id){
+    return this.dataService.deleteEvent(id)
+    .pipe(
+      finalize(() => {
+        this.updateCalendar();
+      }))
+    .subscribe(data => {
+    })
+  }
 }

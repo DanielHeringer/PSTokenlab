@@ -157,11 +157,12 @@ app.put('/updateEvent', (req, res) => {
         id: req.body.id,
         name: req.body.name,
         description: req.body.description,
-        start: req.body.start,
-        end: req.body.end
+        start: req.body.startDate,
+        end: req.body.endDate,
+        creatorID: req.body.creatorID
     }
     let query = `UPDATE event SET name='${event.name}', description='${event.description}',
-            start='${event.start}', end='${event.end}' WHERE id=${event.id}`;
+            start='${event.start}', end='${event.end}' WHERE id=${event.id} AND creatorID=${event.creatorID}`;
     conn.query(query, function(erro, rows, fields){ 
         if(!!erro){
             console.log("erro: " + erro);
@@ -172,13 +173,13 @@ app.put('/updateEvent', (req, res) => {
 });
 
 
-app.get('/deleteEvent/:id', (req, res) => {
+app.delete('/deleteEvent/:id', (req, res) => {
     let query = `DELETE FROM event WHERE id = ${req.params.id}`
     conn.query(query, function(erro, rows, fields){
         if(!!erro){
             console.log("erro: " + erro);
         }else{
-            res.send(rows);
+            res.send({delete:1});
         }
     })
 });
