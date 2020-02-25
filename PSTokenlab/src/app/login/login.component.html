@@ -1,0 +1,24 @@
+<div class="containerMain">
+    <div class="mainbox">
+            <div class="div-row" >
+                <div class="div-title">
+                    <p>Login</p>
+                </div>
+                </div>
+            <div class="div-row" >
+                <div class="div-form">
+                    <form class="form-content">
+                        <label class="label">Email:</label>
+                        <input class="inputText"  [(ngModel)]="email" type="text" name="email" placeholder="Email" required>
+                        <label class="label">Password:</label>
+                        <input class="inputText" [(ngModel)]="password" type="password" name="email" placeholder="Password" required>
+                        <div class="errorMsg"> {{ errorMsg }}</div>
+                        <input class="inputBtn" type="submit" (click)="loginReq()" value="Sign In" />
+                    </form>
+                    <a href="/signup" class="signup">
+                        Doesn't have an account? Sign Up here<br>
+                    </a>
+                </div>
+            </div>
+    </div>
+</div>

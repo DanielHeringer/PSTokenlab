@@ -1,0 +1,209 @@
+
+.containerMain{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    top:70px;
+    padding-top: 20px;
+    background-color: #ebebeb;
+}
+
+.mainbox{
+    text-align: center;
+    height: 100%;
+}
+
+.notification{
+  position: absolute;
+  margin-top: -10px;
+  margin-left: 15px;
+  border-radius: 5px;
+  height: 10px;
+  width: 10px;
+  background-color: red;
+}
+.eventNo{
+  position: absolute;
+  margin-top: -15px;
+  margin-left: 25px;
+  border-radius: 10px;
+  font-size: 12px;
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  background-color: #074c9b;
+}
+.mes{
+  color: #000;
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.div-table{
+    width: 70%;
+    margin: auto;
+}
+.div-row{
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.div-weekday-cell{
+    display: inline-flex;
+    flex: 1 0 13%;
+    align-items: center;
+    justify-content: center;
+    background-color: #177df1;
+    border: 1px solid #177df1;
+    color: #fff;
+    height: 50px;
+}
+.div-cell{
+    display: inline-flex;
+    flex: 1 0 13%;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid  #ebebeb;;
+    background-color: white;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+  }
+.div-content{
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: #177df1;
+  color: white;
+}
+.div-content:hover{
+  background-color: #074c9b;
+}
+.div-content p{
+  width: 100%;
+  text-align: center;
+}
+.non_marked{
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  color: black;
+}
+.non_marked p{
+  width: 100%;
+  text-align: center;
+}
+.non_marked:hover{
+  background-color: #c4c4c4;
+}
+
+.nextMonth{
+  position: absolute;
+  top: 60%;
+  display: flex;
+  padding: 15px;
+  right: 20px;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: #177df1;
+}
+.prevMonth{
+  position: absolute;
+  display: flex;
+  top: 60%;
+  padding: 15px;
+  left: 20px;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: #177df1;
+}
+
+.nextMonth:hover{
+  background-color: #074c9b;
+}
+.prevMonth:hover{
+  background-color: #074c9b;
+}
+
+.list{
+  margin-bottom: 20px;
+  padding: 20px 0px;
+  background-color: white;
+}
+.list .item{
+  padding: 16px;
+  margin: 10px 16px;
+  border:1px solid #ebebeb;
+  border-top:1px solid #ebebeb;
+}
+.list .item .item-row{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.list .item .days{
+  height: 100%;
+  width: 40px;
+  height: 100px;
+  margin-right: 10px;
+}
+.list .item .days .dayCircle{
+  display: block;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  width: 40px;
+  border-radius: 20px;
+  height: 40px;
+  color: white;
+  background-color: #177df1;
+}
+.list .item .days .timeBox{
+  display: block;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+.list .item .days .dayCircle p{
+  width: 100%;
+  text-align: center;
+}
+.list .item .title{
+  width: 200px;
+  text-align: left;
+}
+.list .item .description{
+  margin-top: 10px;
+  border-top: 1px solid #ebebeb;
+  padding-top: 10px;
+  text-align: left;
+  width: 100%;
+  font-size: 14px;
+
+}
+.list .item hr{
+  float: left;
+  border: none;
+  width: 2px;
+  background-color: #177df1;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+@media only screen and (max-width: 1366px){
+
+}

@@ -1,0 +1,58 @@
+<div class="topBar">
+  <div class="userBox" *ngIf="logged">
+    <img src="./../../assets/icons/account_circle-24px.svg">
+    {{ user.name }}
+    <div class="userBox-dropdown">
+      <a href="/newEvent"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
+      <a href="#"><img src="./../../assets/icons/baseline_list_alt_black_18dp.png" height="24px">My Events</a>
+    </div>
+  </div>
+  <div class="logoLink">
+    <a href="#" class="logo">
+     <p>
+      event<img src="./../../assets/icons/calendar-icon-png-black-3.png" height="24px">calendar
+     </p>
+    </a>
+  </div>
+  <div class="menu">
+    <div class="menuLink">
+      <a href="#" *ngIf="logged"><img src="./../../assets/icons/baseline_notification_important_black_18dp.png" height="24px"></a>
+    </div>
+    <div class="menuLink">
+      <a href="#" *ngIf="logged" (click)="logout()">
+        <img src="./../../assets/icons/exit_to_app-24px.svg" height="24px"> Logout
+      </a>
+    </div>
+  </div>
+</div>
+<div class="containerMain">
+
+  <a class="voltar" href="/"><img src="./../../assets/icons/baseline_arrow_back_black_18dp.png" height="24px">Voltar</a>
+
+  <div class="mainbox">
+          <div class="div-row" >
+              <div class="div-title">
+                  <p >Create Event</p>
+              </div>
+              </div>
+          <div class="div-row" >
+              <div class="div-form">
+                  <form class="form-content" action='./'>
+                      <label class="label">* Event Name:</label>
+                      <input class="inputText"  [(ngModel)]="name" type="text" name="eventName" maxlength="100" placeholder="Event Name" required>
+                      <label class="label">* Start Date:</label>
+                      <input class="inputText" [(ngModel)]="startDateStr" type="datetime-local" name="startDate"
+                                  placeholder="Descripition" value="2018-06-13T19:30" max="3000-01-01T00:00" required>
+                      <label class="label">* End Date:</label>
+                      <input class="inputText" [(ngModel)]="endDateStr" type="datetime-local" name="endDate"
+                                  placeholder="End Date" value="2018-06-13T19:30" max="3000-01-01T00:00" required>
+                      <label class="label">* Description:</label>
+                      <textarea class="inputText" [(ngModel)]="description" rows="4" name="description" placeholder="Descripition" required>
+                      </textarea>
+                      <div class="errorMsg"> {{ errorMsg }}</div>
+                      <input class="inputBtn"  type="submit" value="Create Event" (click)="createEvent()" />
+                  </form>
+              </div>
+          </div>
+  </div>
+</div>
