@@ -1,13 +1,17 @@
 # PSTokenlab
 ## Dependencias servidor API:
-### npm install express
-### npm install mysql
-### npm install cors
-### npm install body-parser
-### npm install nodemon
+````
+$ npm install express
+$ npm install mysql
+$ npm install cors
+$ npm install body-parser
+$ npm install nodemon
+````
 
 ## Dependencias Front:
-### npm install @angular/cli -g
+````
+$ npm install @angular/cli -g
+````
 
 
 
