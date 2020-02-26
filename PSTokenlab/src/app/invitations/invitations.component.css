@@ -1,0 +1,146 @@
+#greenBtn{
+  background-color: chartreuse;
+}
+#greenBtn:hover{
+  background-color: darkgreen;
+}
+
+.from{
+  margin-bottom: 20px;
+}
+
+.containerMain{
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  top:70px;
+  padding-top: 20px;
+  background-color: #ebebeb;
+}
+
+.mainbox{
+  text-align: center;
+  height: 100%;
+}
+
+.div-table{
+  width: 70%;
+  margin: auto;
+}
+
+
+.list{
+  margin-bottom: 20px;
+  padding: 20px 0px;
+  background-color: white;
+}
+.list .item{
+  position: relative;
+  padding: 16px;
+  margin: 10px 16px;
+  border:1px solid #ebebeb;
+  border-top:1px solid #ebebeb;
+}
+.list .item .item-row{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.list .item .days{
+  height: 100%;
+  width: 40px;
+  height: 100px;
+  margin-right: 10px;
+}
+.list .item .days .dayCircle{
+  display: block;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  width: 40px;
+  border-radius: 20px;
+  height: 40px;
+  color: white;
+  background-color: #177df1;
+}
+.list .item .days .timeBox{
+  display: block;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+.list .item .days .dayCircle p{
+  width: 100%;
+  text-align: center;
+}
+.list .item .title{
+  width: 200px;
+  text-align: left;
+}
+.list .item .description{
+  margin-top: 10px;
+  border-top: 1px solid #ebebeb;
+  padding-top: 10px;
+  text-align: left;
+  width: 100%;
+  font-size: 14px;
+
+}
+.list .item .actionMenu{
+  display: flex;
+  align-items: center;
+  width: auto;
+  position: absolute;
+  padding: 0;
+  right: 0px;
+  font-size: 14px;
+  height: 100%;
+}
+.list .item .actionMenu .actionBtn{
+  display: flex;
+  align-items: center;
+  width: 60px;
+  height: 40px;
+  background-color: #ebebeb;
+  margin-right: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.list .item .actionMenu .actionBtn p{
+  text-align: center;
+  width: 100%;
+}
+.list .item .actionMenu .actionBtn:hover{
+  background-color: #b9b8b8;
+}
+#delete{
+  color: white;
+  background-color: rgb(224, 2, 2);
+}
+#delete:hover{
+  background-color: rgb(149, 1, 1);
+}
+#deleteConfirmation{
+  color: white;
+  background-color: rgb(224, 2, 2);
+}
+#deleteConfirmation:hover{
+  background-color: rgb(149, 1, 1);
+}
+.list .item hr{
+  float: left;
+  border: none;
+  width: 2px;
+  background-color: #177df1;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+#show-mobile{
+  display: none;
+}
+

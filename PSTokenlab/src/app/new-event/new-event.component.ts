@@ -21,7 +21,7 @@ export class NewEventComponent implements OnInit {
   description:string = "";
   event: Event = {"id": null, "description": this.description, "name": this.name,
                   "startDate": this.startDate, "endDate": this.endDate};
-  user: User;
+  user: any;
   logged: number;
   errorMsg: string  = "";
   eventError: number = -1;

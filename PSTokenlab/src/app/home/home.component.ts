@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class HomeComponent implements OnInit {
 
-  user: User;
+  user: any;
   dayOfweek: number = new Date().getDay();
   weekDay: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -62,7 +62,11 @@ export class HomeComponent implements OnInit {
         this.listEvents(0);
       }))
     .subscribe(data => {
-      this.events = data;
+      let eventsVector = data.rows
+      for(event of data.rowsInvited){
+        eventsVector.push(event)
+      }
+      this.events = eventsVector;
     })
   }
 

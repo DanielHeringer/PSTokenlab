@@ -39,9 +39,9 @@ export class DataService {
                "startDate": event.startDate.getTime(), "endDate": event.endDate.getTime(), "creatorID": creatorID};
     return this._http.put<any>(apiUrl, json);
   }
-  getEventInterval(creatorID, start, end){
+  getEventInterval(creatorID, start, end): Observable<any>{
     let apiUrl = this.baseUrl+`/eventInterval/${creatorID}/${start}/${end}`;
-    return this._http.get<any[]>(apiUrl);
+    return this._http.get<any>(apiUrl);
   }
   getEvent(id, creatorID){
     let apiUrl = this.baseUrl+`/event/${id}/${creatorID}`;
@@ -55,5 +55,17 @@ export class DataService {
     let apiUrl = this.baseUrl+`/invite`;
     let json ={"from": from, "to": to, "eventID": eventID};
     return this._http.post<any>(apiUrl, json);
+  }
+
+  getNotifications(id) : Observable<any[]> {
+    let apiUrl = this.baseUrl+`/notifications/${id}`;
+    return this._http.get<any[]>(apiUrl);
+  }
+
+  answerInvite(id_from, id_to, id_event, answer) :  Observable<any> {
+    let apiUrl = this.baseUrl+`/answerInvite`;
+    let json = {id_from: id_from, id_to: id_to, event_id: id_event, answer: answer}
+    return this._http.put<any>(apiUrl, json);
+
   }
 }

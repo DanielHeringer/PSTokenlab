@@ -1,148 +1,145 @@
-    <div class="topBar">
-        <div class="userBox" *ngIf="logged">
-          <img src="./../../assets/icons/account_circle-24px.svg">
-          {{ user.name }}
-          <div class="userBox-dropdown">
-            <a href="/newEvent/default"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
-          </div>
-        </div>
-        <div class="logoLink">
-          <a href="#" onClick="window.location.reload(true)" class="logo">
-           <p>
-
-            event<img src="./../../assets/icons/calendar-icon-png-black-3.png" height="24px">calendar
-           </p>
-          </a>
-        </div>
-        <div class="menu">
-          <a href="/invitations" *ngIf="logged">
-            <img src="./../../assets/icons/baseline_notification_important_black_18dp.png" height="24px">
-            <span *ngIf="unnanswered()" class="notification"></span>
-          </a>
-          <a href="/login" *ngIf="!logged">Login</a>
-          <a href="#" *ngIf="logged" (click)="logout()">
-            <img src="./../../assets/icons/exit_to_app-24px.svg" height="24px">
-          </a>
-        </div>
+<div class="topBar">
+  <div class="userBox" *ngIf="logged">
+    <img src="./../../assets/icons/account_circle-24px.svg">
+    {{ user.username }}
+    <div class="userBox-dropdown">
+      <a href="/newEvent/default"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
     </div>
-    <div class="containerMain">
-      <div class="mes">{{currentMonth}}, {{currentYear}}</div>
-        <div class="mainbox">
-            <div class="div-table">
-                <div class="div-row" >
-                    <div class="div-weekday-cell" *ngFor="let day of weekDay; let i = index">
-                        <p >{{ day }}</p>
-                    </div>
-                </div>
-                <div class="div-row" >
-                  <div class="div-cell" *ngFor="let column of createRange(42); let i = index">
-                    <p></p>
-                    <div (click)="listEvents(i-(monthIndex-1))" [class.div-content]="isDayMarked(i-(monthIndex-1))" *ngIf="i>=monthIndex && isDayMarked(i-(monthIndex-1)); else non_marked">
-                        <p>{{ i-(monthIndex-1) }}</p>
-                        <span *ngIf="getNoOfEvents(i-(monthIndex-1)) > 1" class="eventNo">{{getNoOfEvents(i-(monthIndex-1))}}</span>
-                    </div>
-                    <ng-template #non_marked>
-                      <div *ngIf="i>=monthIndex && (i-(monthIndex-1))<=(daysInMonth )">
-                          <a class="non_marked" (click)="redirectToNew((i-(monthIndex-1)))"><p>{{ i-(monthIndex-1) }}</p></a>
-                      </div>
-                    </ng-template>
-                  </div>
-                </div>
+  </div>
+  <div class="logoLink">
+    <a href="#" onClick="window.location.reload(true)" class="logo">
+     <p>
 
-              <div class="list" id="listAnchor">
-                <div class="item" *ngFor="let event of eventsToList">
-                  <div class="item-row">
-                    <div class="days">
-                      <div class="dayCircle"><p>{{event.startDate.getDate()}}</p></div>
-                      <div class="dayCircle" style="background-color:rgb(218, 4, 4)"><p>{{event.endDate.getDate()}}</p></div>
-                    </div>
-                    <div class="days">
-                      <div class="timeBox">
-                        <p>
-                          {{event.startDate.getHours()}}h{{event.startDate.getMinutes() < 10? "0"+event.startDate.getMinutes():event.startDate.getMinutes()}}
-                        </p>
-                      </div>
-                      <div class="timeBox">
-                        <p>
-                          {{event.endDate.getHours()}}h{{event.endDate.getMinutes() < 10? "0"+event.endDate.getMinutes():event.endDate.getMinutes()}}
-                        </p>
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="title">{{event.name}} </div>
-
-                  <div class="actionMenu" id="hide-mobile">
-                    <div class="actionBtn" (click)="toggleInvitation(event.id)">
-                        <p><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></p>
-                      </div>
-
-                      <form *ngIf="invitationDialog==event.id">
-                        <input [(ngModel)]="invited" type="text" name="username" placeholder="Friend username..."/>
-                        <button type="submit" (click)="inviteUser(event.id, invited)">
-                          <img src="./../../assets/icons/baseline_send_black_18dp.png" height="24px">
-                        </button>
-                        <p> {{sendErrorMsg}}</p>
-                      </form>
-
-                      <div class="actionBtn" (click)="editEvent(event.id)">
-                        <p><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></p>
-                      </div>
-
-                      <div class="actionBtn" id="delete" (click)="toggleConfirmation(event.id)">
-                        <p><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></p>
-                      </div>
-
-                      <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="actionBtn" id="deleteConfirmation">
-                      <p>Confirm</p>
-                      </div>
-                  </div>
-                  </div>
-
-                  <div class="item-row">
-                    <div class="description">{{event.description}} </div>
-                  </div>
-
-                  <div class="item-row" id="show-mobile">
-                    <div class="actionMenu" id="show-mobile">
-
-                      <div class="actionBtn" (click)="toggleInvitation(event.id)">
-                        <p><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></p>
-                      </div>
-
-                      <form *ngIf="invitationDialog==event.id">
-                        <input [(ngModel)]="invited" type="text" name="username" placeholder="Friend username..."/>
-                        <button type="submit" (click)="inviteUser(event.id, invited)">
-                          <img src="./../../assets/icons/baseline_send_black_18dp.png" height="24px">
-                        </button>
-                        <p> {{sendErrorMsg}}</p>
-                      </form>
-
-                      <div class="actionBtn" (click)="editEvent(event.id)">
-                        <p><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></p>
-                      </div>
-
-                      <div class="actionBtn" id="delete" (click)="toggleConfirmation(event.id)">
-                        <p><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></p>
-                      </div>
-
-                      <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="actionBtn" id="deleteConfirmation">
-                      <p>Confirm</p>
-                      </div>
-
-                  </div>
+      event<img src="./../../assets/icons/calendar-icon-png-black-3.png" height="24px">calendar
+     </p>
+    </a>
+  </div>
+  <div class="menu">
+    <a href="/invitations" *ngIf="logged">
+      <img src="./../../assets/icons/baseline_notification_important_black_18dp.png" height="24px">
+      <span *ngIf="unnanswered()" class="notification"></span>
+    </a>
+    <a href="/login" *ngIf="!logged">Login</a>
+    <a href="#" *ngIf="logged" (click)="logout()">
+      <img src="./../../assets/icons/exit_to_app-24px.svg" height="24px">
+    </a>
+  </div>
+</div>
+<div class="containerMain">
+<div class="mes">{{currentMonth}}, {{currentYear}}</div>
+  <div class="mainbox">
+      <div class="div-table">
+          <div class="div-row" >
+              <div class="div-weekday-cell" *ngFor="let day of weekDay; let i = index">
+                  <p >{{ day }}</p>
               </div>
-
+          </div>
+          <div class="div-row" >
+            <div class="div-cell" *ngFor="let column of createRange(42); let i = index">
+              <p></p>
+              <div (click)="listEvents(i-(monthIndex-1))" [class.div-content]="isDayMarked(i-(monthIndex-1))" *ngIf="i>=monthIndex && isDayMarked(i-(monthIndex-1)); else non_marked">
+                  <p>{{ i-(monthIndex-1) }}</p>
+                  <span *ngIf="getNoOfEvents(i-(monthIndex-1)) > 1" class="eventNo">{{getNoOfEvents(i-(monthIndex-1))}}</span>
               </div>
+              <ng-template #non_marked>
+                <div *ngIf="i>=monthIndex && (i-(monthIndex-1))<=(daysInMonth )">
+                    <a class="non_marked" (click)="redirectToNew((i-(monthIndex-1)))"><p>{{ i-(monthIndex-1) }}</p></a>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+
+        <div class="list" id="listAnchor">
+          <div class="item" *ngFor="let event of eventsToList">
+            <div class="item-row">
+              <div class="days">
+                <div class="dayCircle"><p>{{event.startDate.getDate()}}</p></div>
+                <div class="dayCircle" style="background-color:rgb(218, 4, 4)"><p>{{event.endDate.getDate()}}</p></div>
+              </div>
+              <div class="days">
+                <div class="timeBox">
+                  <p>
+                    {{event.startDate.getHours()}}h{{event.startDate.getMinutes() < 10? "0"+event.startDate.getMinutes():event.startDate.getMinutes()}}
+                  </p>
+                </div>
+                <div class="timeBox">
+                  <p>
+                    {{event.endDate.getHours()}}h{{event.endDate.getMinutes() < 10? "0"+event.endDate.getMinutes():event.endDate.getMinutes()}}
+                  </p>
+                </div>
+              </div>
+              <hr>
+              <div class="title">{{event.name}} </div>
+
+            <div class="actionMenu" id="hide-mobile">
+              <div class="actionBtn" (click)="toggleInvitation(event.id)">
+                  <p><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></p>
+                </div>
+
+                <form *ngIf="invitationDialog==event.id">
+                  <input [(ngModel)]="invited" type="text" name="username" placeholder="Friend username..."/>
+                  <button type="submit" (click)="inviteUser(event.id, invited)">
+                    <img src="./../../assets/icons/baseline_send_black_18dp.png" height="24px">
+                  </button>
+                  <p> {{sendErrorMsg}}</p>
+                </form>
+
+                <div class="actionBtn" (click)="editEvent(event.id)">
+                  <p><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></p>
+                </div>
+
+                <div class="actionBtn" id="delete" (click)="toggleConfirmation(event.id)">
+                  <p><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></p>
+                </div>
+
+                <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="actionBtn" id="deleteConfirmation">
+                <p>Confirm</p>
+                </div>
+            </div>
             </div>
 
+            <div class="item-row">
+              <div class="description">{{event.description}} </div>
+            </div>
+
+            <div class="item-row" id="show-mobile">
+              <div class="actionMenu" id="show-mobile">
+
+                <div class="actionBtn" (click)="toggleInvitation(event.id)">
+                  <p><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></p>
+                </div>
+
+                <form *ngIf="invitationDialog==event.id">
+                  <input [(ngModel)]="invited" type="text" name="username" placeholder="Friend username..."/>
+                  <button type="submit" (click)="inviteUser(event.id, invited)">
+                    <img src="./../../assets/icons/baseline_send_black_18dp.png" height="24px">
+                  </button>
+                  <p> {{sendErrorMsg}}</p>
+                </form>
+
+                <div class="actionBtn" (click)="editEvent(event.id)">
+                  <p><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></p>
+                </div>
+
+                <div class="actionBtn" id="delete" (click)="toggleConfirmation(event.id)">
+                  <p><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></p>
+                </div>
+
+                <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="actionBtn" id="deleteConfirmation">
+                <p>Confirm</p>
+                </div>
+
+            </div>
         </div>
-    </div>
-    <div class="nextMonth" (click)="nextM()">
-      <img src="./../../assets/icons/navigate_next-24px.png" width="24px">
-    </div>
-    <div class="prevMonth" (click)="prevM()">
-      <img src="./../../assets/icons/navigate_before-24px.png" width="24px">
-    </div>
 
+        </div>
+      </div>
 
-
+  </div>
+</div>
+<div class="nextMonth" (click)="nextM()">
+<img src="./../../assets/icons/navigate_next-24px.png" width="24px">
+</div>
+<div class="prevMonth" (click)="prevM()">
+<img src="./../../assets/icons/navigate_before-24px.png" width="24px">
+</div>

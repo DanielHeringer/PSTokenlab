@@ -74,9 +74,9 @@ app.post('/createUser/', (req, res) => {
         email: req.body.email,
         password: req.body.password
     }
-    let queryCheckName =  `SELECT * FROM user WHERE (name = '${user.name}')`;
+    let queryCheckName =  `SELECT * FROM user WHERE (username = '${user.name}')`;
     let queryCheckEmail =  `SELECT * FROM user WHERE (email = '${user.email}')`;
-    let query = `INSERT INTO user(name, email, password) values('${user.name}', '${user.email}','${user.password}')`;
+    let query = `INSERT INTO user(username, email, password) values('${user.name}', '${user.email}','${user.password}')`;
     conn.query(queryCheckName, function(erro, rows_name, fields){
         if(!rows_name.length){
             conn.query(queryCheckEmail, function(erro, rows_email, fields){
@@ -166,11 +166,24 @@ app.get('/eventInterval/:creatorID/:start/:end', (req, res) => {
                     )
                     ORDER BY start
                     `;
+    let queryInvited = `SELECT * FROM event e JOIN invitation i 
+                        ON ((i.user_to =  ${req.params.creatorID} and e.creatorID !=  ${req.params.creatorID}) AND (i.event_id = e.id))
+                        WHERE
+                        (answer = 2) and
+                        (
+                        ((start >=${req.params.start}) AND (start <= ${req.params.end}))
+                        OR
+                        ((end >= ${req.params.start}) AND (end <= ${req.params.end}))
+                        )
+                        ORDER BY start`
     conn.query(query, function(erro, rows, fields){
         if(!!erro){
             console.log("erro: " + erro);
         }else{
-            res.send(rows);
+            conn.query(queryInvited, function(erro, rowsInvited, fields){
+                    console.log(JSON.stringify({rowsInvited, rows}))
+                    res.send({rowsInvited, rows});
+            })
         }
     })
 });
@@ -207,7 +220,7 @@ app.delete('/deleteEvent/:id', (req, res) => {
 app.post('/invite/', (req, res) => {
 
     let queryGetTo = `SELECT user.id, event.start, event.end FROM user, event WHERE
-                         user.name = '${req.body.to}' AND event.id = ${req.body.eventID} `;
+                         user.username = '${req.body.to}' AND event.id = ${req.body.eventID} `;
 
     conn.query(queryGetTo, function(erro, rowTo, fields){
         if(!!erro){
@@ -258,6 +271,35 @@ app.post('/invite/', (req, res) => {
         }
     })
 });
+
+app.get('/notifications/:id', (req, res) => {
+    let query = ` SELECT i.answer, u.username, e.* FROM invitation i
+                    JOIN user u ON (i.user_from = u.id) 
+                    JOIN event e ON (e.id = i.event_id) WHERE (i.user_to = ${req.params.id} AND i.answer = 0)`;
+                    console.log(query);
+    conn.query(query, function(erro, rows, fields){
+        if(!!erro){
+            console.log("erro: " + erro);
+        }else{
+            res.send(rows);
+        }
+    })
+});
+
+app.put('/answerInvite', (req, res) => {
+    let query = ` UPDATE invitation SET answer = ${req.body.answer} WHERE 
+                        user_to = ${req.body.id_to} AND user_from = ${req.body.id_from} AND event_id = ${req.body.event_id}`;
+                    console.log(query);
+
+    conn.query(query, function(erro, rows, fields){
+        if(!!erro){
+            console.log("erro: " + erro);
+        }else{
+            res.send({"error": 0});
+        }
+    })
+});
+
 
 
 app.listen(3000, "192.168.1.108");
