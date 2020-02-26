@@ -17,12 +17,15 @@ $ npm install @angular/cli -g
 
 ## Rodar servidor angular:
 
-ng serve
+````
+$ ng serve
 
+````
 ## Rodar servidor API:
 
-nodemon run
-
+````
+$ nodemon run
+````
 ## screenshots:
 
 ### Tela inicial sem login
