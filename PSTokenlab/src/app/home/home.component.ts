@@ -30,7 +30,8 @@ export class HomeComponent implements OnInit {
   markedDays:number[] = [];
   actionLoginText: string = "Login";
   confirmationDialog: number = 0;
-
+  invitationDialog: number = 0;
+  invited: string = "";
 
   constructor(private dataService: DataService) {
     this.setMonthIndex();
@@ -201,5 +202,19 @@ export class HomeComponent implements OnInit {
     else{
       this.confirmationDialog = 0;
     }
+  }
+  toggleInvitation(id){
+    if(this.invitationDialog == 0){
+      this.invitationDialog = id;
+    }
+    else if(this.invitationDialog != id){
+      this.invitationDialog = id;
+    }
+    else{
+      this.invitationDialog = 0;
+    }
+  }
+  inviteUser(id, username){
+    alert('inviting '+username+' for '+id)
   }
 }

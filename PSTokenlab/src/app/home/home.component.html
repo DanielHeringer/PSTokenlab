@@ -7,7 +7,7 @@
           </div>
         </div>
         <div class="logoLink">
-          <a href="#" class="logo">
+          <a href="#" onClick="window.location.reload(true)" class="logo">
            <p>
 
             event<img src="./../../assets/icons/calendar-icon-png-black-3.png" height="24px">calendar
@@ -72,12 +72,28 @@
                     <div class="title">{{event.name}} </div>
 
                   <div class="actionMenu" id="hide-mobile">
-                    <span class="invite"><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></span>
-                    <span class="edit" (click)="editEvent(event.id)"><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></span>
-                    <span class="delete" (click)="toggleConfirmation(event.id)"><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></span>
-                    <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="confirmation">
-                      Click here to confirm
-                    </div>
+                    <div class="actionBtn" (click)="toggleInvitation(event.id)">
+                        <p><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></p>
+                      </div>
+
+                      <form *ngIf="invitationDialog==event.id">
+                        <input [(ngModel)]="invited" type="text" name="username" placeholder="Friend username..."/>
+                        <button type="submit" (click)="inviteUser(event.id, invited)">
+                          <img src="./../../assets/icons/baseline_send_black_18dp.png" height="24px">
+                        </button>
+                      </form>
+
+                      <div class="actionBtn" (click)="editEvent(event.id)">
+                        <p><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></p>
+                      </div>
+
+                      <div class="actionBtn" id="delete" (click)="toggleConfirmation(event.id)">
+                        <p><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></p>
+                      </div>
+
+                      <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="actionBtn" id="deleteConfirmation">
+                      <p>Confirm</p>
+                      </div>
                   </div>
                   </div>
 
@@ -87,13 +103,30 @@
 
                   <div class="item-row" id="show-mobile">
                     <div class="actionMenu" id="show-mobile">
-                      <div class="invite"><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></div>
-                      <div class="edit" (click)="editEvent(event.id)"><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></div>
-                      <div class="delete" (click)="toggleConfirmation(event.id)"><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></div>
-                      <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="confirmation">
-                        Click here to confirm
+
+                      <div class="actionBtn" (click)="toggleInvitation(event.id)">
+                        <p><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></p>
                       </div>
-                    </div>
+
+                      <form *ngIf="invitationDialog==event.id">
+                        <input [(ngModel)]="invited" type="text" name="username" placeholder="Friend username..."/>
+                        <button type="submit" (click)="inviteUser(event.id, invited)">
+                          <img src="./../../assets/icons/baseline_send_black_18dp.png" height="24px">
+                        </button>
+                      </form>
+
+                      <div class="actionBtn" (click)="editEvent(event.id)">
+                        <p><img src="./../../assets/icons/baseline_edit_black_18dp.png" height="24px"></p>
+                      </div>
+
+                      <div class="actionBtn" id="delete" (click)="toggleConfirmation(event.id)">
+                        <p><img src="./../../assets/icons/baseline_delete_white_18dp.png" height="24px"></p>
+                      </div>
+
+                      <div *ngIf="confirmationDialog==event.id" (click)="delete(event.id)" class="actionBtn" id="deleteConfirmation">
+                      <p>Confirm</p>
+                      </div>
+
                   </div>
               </div>
 
