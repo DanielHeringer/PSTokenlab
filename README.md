@@ -19,7 +19,6 @@ $ npm install @angular/cli -g
 
 ````
 $ ng serve
-
 ````
 ## Rodar servidor API:
 
