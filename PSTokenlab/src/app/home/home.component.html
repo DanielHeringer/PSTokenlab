@@ -17,7 +17,6 @@
   <div class="menu">
     <a href="/invitations" *ngIf="logged">
       <img src="./../../assets/icons/baseline_notification_important_black_18dp.png" height="24px">
-      <span *ngIf="unnanswered()" class="notification"></span>
     </a>
     <a href="/login" *ngIf="!logged">Login</a>
     <a href="#" *ngIf="logged" (click)="logout()">

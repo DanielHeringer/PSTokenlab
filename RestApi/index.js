@@ -12,7 +12,7 @@ const conn = mysql.createConnection({
 });
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://192.168.1.108:4200');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, x-auth");
     next();
@@ -169,7 +169,7 @@ app.get('/eventInterval/:creatorID/:start/:end', (req, res) => {
     let queryInvited = `SELECT * FROM event e JOIN invitation i 
                         ON ((i.user_to =  ${req.params.creatorID} and e.creatorID !=  ${req.params.creatorID}) AND (i.event_id = e.id))
                         WHERE
-                        (answer = 2) and
+                        (answer = 1) and
                         (
                         ((start >=${req.params.start}) AND (start <= ${req.params.end}))
                         OR
@@ -302,5 +302,5 @@ app.put('/answerInvite', (req, res) => {
 
 
 
-app.listen(3000, "192.168.1.108");
+app.listen(3000);
 

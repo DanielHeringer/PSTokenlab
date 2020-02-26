@@ -97,7 +97,7 @@ background-color: #c4c4c4;
 
 .nextMonth{
 position: absolute;
-top: 40%;
+top: 400px;
 display: flex;
 padding: 15px;
 right: 10%;
@@ -110,7 +110,7 @@ background-color: #177df1;
 .prevMonth{
 position: absolute;
 display: flex;
-top: 40%;
+top: 400px;
 padding: 15px;
 left: 10%;
 border-radius: 30px;
