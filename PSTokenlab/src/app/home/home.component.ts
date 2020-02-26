@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   lastDayTimestamp: number;
   logged: number = 0;
   events;
-  eventsToList: Event[] = [];
+  eventsToList: any[]= [];
   markedDays:number[] = [];
   actionLoginText: string = "Login";
   confirmationDialog: number = 0;
@@ -95,16 +95,19 @@ export class HomeComponent implements OnInit {
       let startDay = new Date(event.start).getDate();
       let endDay = new Date(event.end).getDate();
       if((day >= startDay && day<= endDay) || day == 0){
+        console.log(event)
         let push =
             {id: event.id,
              name: event.name,
              description: event.description,
              startDate: new Date(event.start),
-             endDate: new Date(event.end)
+             endDate: new Date(event.end),
+             answer: event.answer
             }
         this.eventsToList.push(push);
       }
     }
+    console.log(this.eventsToList)
   }
 
   isDayMarked(day){

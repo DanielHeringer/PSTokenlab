@@ -70,7 +70,7 @@
               <hr>
               <div class="title">{{event.name}} </div>
 
-            <div class="actionMenu" id="hide-mobile">
+            <div class="actionMenu" id="hide-mobile" *ngIf="event.answer == null">
               <div class="actionBtn" (click)="toggleInvitation(event.id)">
                   <p><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></p>
                 </div>
@@ -102,7 +102,7 @@
             </div>
 
             <div class="item-row" id="show-mobile">
-              <div class="actionMenu" id="show-mobile">
+              <div class="actionMenu" id="show-mobile" *ngIf="event.answer == null">
 
                 <div class="actionBtn" (click)="toggleInvitation(event.id)">
                   <p><img src="./../../assets/icons/baseline_mail_outline_black_18dp.png" height="24px"></p>

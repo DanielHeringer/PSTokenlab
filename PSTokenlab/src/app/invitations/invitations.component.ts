@@ -33,6 +33,7 @@ export class InvitationsComponent implements OnInit {
     window.sessionStorage.clear();
     location.reload();
   }
+
   notifications(id){
     return this.dataService.getNotifications(id)
     .subscribe(data => {

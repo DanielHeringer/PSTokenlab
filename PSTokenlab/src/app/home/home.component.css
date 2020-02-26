@@ -97,10 +97,10 @@ background-color: #c4c4c4;
 
 .nextMonth{
 position: absolute;
-top: 400px;
+top: 10px;
 display: flex;
 padding: 15px;
-right: 10%;
+right: 30%;
 border-radius: 30px;
 color: white;
 cursor: pointer;
@@ -110,9 +110,9 @@ background-color: #177df1;
 .prevMonth{
 position: absolute;
 display: flex;
-top: 400px;
+top: 10px;
 padding: 15px;
-left: 10%;
+left: 30%;
 border-radius: 30px;
 color: white;
 cursor: pointer;
@@ -325,8 +325,10 @@ right: 16px ;
 
 .nextMonth{
   top: 10px;
+  right: 16px;
 }
 .prevMonth{
   top: 10px;
+  left: 16px;
 }
 }
