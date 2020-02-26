@@ -15,9 +15,9 @@
           </a>
         </div>
         <div class="menu">
-          <a href="#" *ngIf="logged">
+          <a href="/invitations" *ngIf="logged">
             <img src="./../../assets/icons/baseline_notification_important_black_18dp.png" height="24px">
-            <span class="notification"></span>
+            <span *ngIf="unnanswered()" class="notification"></span>
           </a>
           <a href="/login" *ngIf="!logged">Login</a>
           <a href="#" *ngIf="logged" (click)="logout()">
@@ -81,6 +81,7 @@
                         <button type="submit" (click)="inviteUser(event.id, invited)">
                           <img src="./../../assets/icons/baseline_send_black_18dp.png" height="24px">
                         </button>
+                        <p> {{sendErrorMsg}}</p>
                       </form>
 
                       <div class="actionBtn" (click)="editEvent(event.id)">
@@ -113,6 +114,7 @@
                         <button type="submit" (click)="inviteUser(event.id, invited)">
                           <img src="./../../assets/icons/baseline_send_black_18dp.png" height="24px">
                         </button>
+                        <p> {{sendErrorMsg}}</p>
                       </form>
 
                       <div class="actionBtn" (click)="editEvent(event.id)">

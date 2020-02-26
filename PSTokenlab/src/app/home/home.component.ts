@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   confirmationDialog: number = 0;
   invitationDialog: number = 0;
   invited: string = "";
+  sendErrorMsg: string = "";
 
   constructor(private dataService: DataService) {
     this.setMonthIndex();
@@ -42,11 +43,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if(sessionStorage.getItem('user')!=null){
-    this.user = JSON.parse(sessionStorage.getItem('user'))
-    this.logged = this.user.loginAuth;
-    if(this.logged){
-      this.getEvents();
-    }
+      this.user = JSON.parse(sessionStorage.getItem('user'))
+      this.logged = this.user.loginAuth;
+      if(this.logged){
+        this.getEvents();
+      }
     }
     else{
       this.logged = 0;
@@ -215,6 +216,24 @@ export class HomeComponent implements OnInit {
     }
   }
   inviteUser(id, username){
-    alert('inviting '+username+' for '+id)
+    return this.dataService.invite(this.user.id, username, id)
+    .subscribe(data => {
+      if(data.sendError == 1){
+        this.sendErrorMsg = "User already invited";
+      }
+      else if(data.sendError == 2){
+        this.sendErrorMsg = "User not found";
+      }
+      else if(data.sendError == 3){
+        this.sendErrorMsg = "User is already committed";
+      }
+      else{
+        this.sendErrorMsg = "Invitation sent";
+      }
+    })
+  }
+
+  unnanswered(){
+    return true
   }
 }

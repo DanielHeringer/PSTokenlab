@@ -13,16 +13,6 @@
     text-align: center;
     height: 100%;
 }
-
-.notification{
-  position: absolute;
-  margin-top: -10px;
-  margin-left: 15px;
-  border-radius: 5px;
-  height: 10px;
-  width: 10px;
-  background-color: red;
-}
 .eventNo{
   position: absolute;
   margin-top: -15px;
@@ -108,10 +98,10 @@
 
 .nextMonth{
   position: absolute;
-  top: 60%;
+  top: 40%;
   display: flex;
   padding: 15px;
-  right: 20px;
+  right: 10%;
   border-radius: 30px;
   color: white;
   cursor: pointer;
@@ -121,9 +111,9 @@
 .prevMonth{
   position: absolute;
   display: flex;
-  top: 60%;
+  top: 40%;
   padding: 15px;
-  left: 20px;
+  left: 10%;
   border-radius: 30px;
   color: white;
   cursor: pointer;

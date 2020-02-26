@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DataService } from './services/data.service';
 import { NewEventComponent } from './new-event/new-event.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { InvitationsComponent } from './invitations/invitations.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditEventComponent } from './edit-event/edit-event.component';
     LoginComponent,
     SignupComponent,
     NewEventComponent,
-    EditEventComponent
+    EditEventComponent,
+    InvitationsComponent
   ],
   imports: [
     BrowserModule,

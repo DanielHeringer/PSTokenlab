@@ -204,5 +204,61 @@ app.delete('/deleteEvent/:id', (req, res) => {
 });
 
 
+app.post('/invite/', (req, res) => {
+
+    let queryGetTo = `SELECT user.id, event.start, event.end FROM user, event WHERE
+                         user.name = '${req.body.to}' AND event.id = ${req.body.eventID} `;
+
+    conn.query(queryGetTo, function(erro, rowTo, fields){
+        if(!!erro){
+            console.log("erro: " + erro);
+        }
+        else{
+            console.log(JSON.stringify(rowTo));
+            if(rowTo.length == 0){
+                res.status(200).send({"sendError": 2});
+            }
+            else{
+                let queryVerify = `SELECT * FROM event WHERE
+                                creatorID = ${rowTo[0].id} AND (
+                                ((start >= ${rowTo[0].start}) AND (start <= ${rowTo[0].end})) 
+                                OR
+                                ((end >= ${rowTo[0].start}) AND (end <= ${rowTo[0].end}))
+                                )
+                                `;
+                                
+                conn.query(queryVerify, function(erro, rowVerify, fields){
+                    if(!!erro){
+                        console.log("erro: " + erro);
+                    }
+                    else{
+                        if(rowVerify.length > 0){
+                            console.log("User occupied")
+                            res.status(200).send({"sendError": 3});
+                        }
+                        else{
+                            let query = `INSERT INTO invitation(user_from, user_to, event_id)
+                            values(${req.body.from}, ${rowTo[0].id},${req.body.eventID})`;
+                                            
+                            conn.query(query, function(erro, row, fields){
+                                if(!!erro){
+                                    if(erro.code == "ER_DUP_ENTRY"){
+                                        console.log("ER_DUP_ENTRY")
+                                        res.status(200).send({"sendError": 1});
+                                    }
+                                }
+                                else{
+                                    res.status(200).send({"sendError": 0});
+                                }
+                            });
+                        }
+                    }
+                })
+            }
+        }
+    })
+});
+
+
 app.listen(3000, "192.168.1.108");
 

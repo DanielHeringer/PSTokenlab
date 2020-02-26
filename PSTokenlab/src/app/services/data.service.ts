@@ -51,4 +51,9 @@ export class DataService {
     let apiUrl = this.baseUrl+`/deleteEvent/`+id;
     return this._http.delete<any[]>(apiUrl);
   }
+  invite(from, to, eventID){
+    let apiUrl = this.baseUrl+`/invite`;
+    let json ={"from": from, "to": to, "eventID": eventID};
+    return this._http.post<any>(apiUrl, json);
+  }
 }

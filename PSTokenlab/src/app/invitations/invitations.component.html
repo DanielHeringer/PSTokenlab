@@ -1,0 +1,25 @@
+<div class="topBar">
+  <div class="userBox" *ngIf="logged">
+    <img src="./../../assets/icons/account_circle-24px.svg">
+    {{ user.name }}
+    <div class="userBox-dropdown">
+      <a href="/newEvent/default"><img src="./../../assets/icons/baseline_add_circle_outline_black_18dp.png" height="24px">Add Event</a>
+    </div>
+  </div>
+  <div class="logoLink">
+    <a href="#" onClick="window.location.reload(true)" class="logo">
+     <p>
+      event<img src="./../../assets/icons/calendar-icon-png-black-3.png" height="24px">calendar
+     </p>
+    </a>
+  </div>
+  <div class="menu">
+    <a href="/invitations" *ngIf="logged">
+      <img src="./../../assets/icons/baseline_notification_important_black_18dp.png" height="24px">
+    </a>
+    <a href="/login" *ngIf="!logged">Login</a>
+    <a href="#" *ngIf="logged" (click)="logout()">
+      <img src="./../../assets/icons/exit_to_app-24px.svg" height="24px">
+    </a>
+  </div>
+</div>
