@@ -82,7 +82,8 @@ export class EditEventComponent implements OnInit {
     .pipe(
       finalize(() => {
         this.name = this.data.name;
-        let start = new Date(this.data.start).toISOString(), end = new Date(this.data.end).toISOString();
+        let start = this.toLocalISOString(new Date(this.data.start)), end =this.toLocalISOString(new Date(this.data.end));
+        console.log(start)
         this.startDateStr = start.slice(0,16);
         this.endDateStr = end.slice(0,16);
         this.description = this.data.description;
@@ -119,5 +120,10 @@ export class EditEventComponent implements OnInit {
   logout(){
     window.sessionStorage.clear();
     location.reload();
+  }
+
+  toLocalISOString(d) {
+    var off = d.getTimezoneOffset();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes() - off, d.getSeconds(), d.getMilliseconds()).toISOString();
   }
 }
