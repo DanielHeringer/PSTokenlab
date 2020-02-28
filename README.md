@@ -1,4 +1,11 @@
 # PSTokenlab
+
+## Ferramentas utilizadas para produção
+- NodeJS
+- MySQL Server
+- MySQL Workbench
+- Visual Studio
+
 ## Dependencias servidor API:
 ````
 $ npm install express
