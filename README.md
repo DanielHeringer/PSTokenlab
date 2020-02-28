@@ -19,7 +19,6 @@ $ npm install @angular/cli -g
 
 ````
 $ ng serve
-
 ````
 ## Rodar servidor API:
 
@@ -55,3 +54,11 @@ $ nodemon run
  ### Tela novo evento
  
 ![tela-novo-evento](https://raw.githubusercontent.com/DanielHeringer/PSTokenlab/master/ScreenShots/tela-novo-evento.png)
+
+ ### Tela ações
+ 
+![tela-acoes](https://raw.githubusercontent.com/DanielHeringer/PSTokenlab/master/ScreenShots/tela-acoes.png)
+
+ ### Tela notificações
+ 
+![tela-notificacoes](https://raw.githubusercontent.com/DanielHeringer/PSTokenlab/master/ScreenShots/tela-notificacoes.png)
