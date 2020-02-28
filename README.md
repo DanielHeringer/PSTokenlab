@@ -32,6 +32,9 @@ $ ng serve
 ````
 $ nodemon run
 ````
+## Video utilização:
+https://youtu.be/cR0Ik7okgW4
+
 ## screenshots:
 
 ### Tela inicial sem login
